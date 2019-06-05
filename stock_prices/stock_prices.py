@@ -40,25 +40,30 @@ This feels a little naive because i'm only finding the lowest number to buy and 
 
 
 def find_max_profit(prices):
-  
-  buy = 0
-  sell = 0
-  buy_index = 0
+  if len(prices) < 2:
+    return 0
 
-  for i in range(0, len(prices)-1):
-    if i == 0:
-      buy = prices[i]
-      buy_index = i
-    elif prices[i] < buy:
-      buy = prices[i]
-      buy_index = i
+  else:
+    buy = 0
+    sell = 0
+    buy_index = 0
 
-  for i in range(1, len(prices)):
-    if i > buy_index and prices[i] > sell:
-      sell = prices[i]
-  print(buy, buy_index, sell)
-  print('p/l: ', sell-buy)
-  return sell - buy
+    for i in range(0, len(prices)-1):
+      if prices[i]<0:
+        return "Invalid prices"
+      if i == 0:
+        buy = prices[i]
+        buy_index = i
+      elif prices[i] < buy:
+        buy = prices[i]
+        buy_index = i
+
+    for i in range(1, len(prices)):
+      if i > buy_index and prices[i] > sell:
+        sell = prices[i]
+    
+    print('p/l: ', sell-buy)
+    return sell - buy
 
 print(find_max_profit([100, 90, 80, 50, 20, 10]))
 
