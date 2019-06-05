@@ -30,10 +30,10 @@ Execute
 Analyze
 -------
 
+Time complexity - two loops consecutively - O(2n)
+Space complexity - only ever one loop running at a time - O(1)
 
-
-
-
+This feels a little naive because i'm only finding the lowest number to buy and the highest number to sell, contingent on it being AFTER the buy. it seems liek there could be a scenario where there's a slight wider spread even if the buy is slightly higher or the sell slightly lower. IN other words, I'm looping through and finding the cheapest point to buy. And then looping through to find the most expensive point AFTER that purchase. But maybe there's a point BEFORE that purchase where the stock price is high enough that I would've made more money buying slightly higher and selling at that level. 
 
 """
 
@@ -44,7 +44,6 @@ def find_max_profit(prices):
   buy = 0
   sell = 0
   buy_index = 0
-  sell_index = 0
 
   for i in range(0, len(prices)-1):
     if i == 0:
@@ -57,7 +56,7 @@ def find_max_profit(prices):
   for i in range(1, len(prices)):
     if i > buy_index and prices[i] > sell:
       sell = prices[i]
-  print(buy, buy_index, sell, sell_index)
+  print(buy, buy_index, sell)
   print('p/l: ', sell-buy)
   return sell - buy
 
