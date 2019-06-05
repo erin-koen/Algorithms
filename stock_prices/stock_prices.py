@@ -1,5 +1,31 @@
 #!/usr/bin/python
 
+"""
+Understand
+----------
+- buying must occur before selling
+  - selling can't happen at arr[0]
+  - buying can't happen at arr[-1]
+
+
+Plan 
+----
+
+
+Execute
+-------
+
+
+Analyze
+-------
+
+
+
+
+
+
+"""
+
 import argparse
 
 def find_max_profit(prices):
