@@ -32,24 +32,28 @@ def rock_paper_scissors(n):
     possibilities = 3**n
 
     # instantiate an array with the correct number of sub lists
-    return_list = possibilities*[['', '', '']]
+    return_list = possibilities*[[]]
 
     # declare rps
     rps = ['rock', 'paper', 'scissors']
 
     # loop through RPS and assign one string at a time
-    for i in range(0, len(rps)-1):
+    for i in range(0, len(rps)):
         play = rps[i]
         insert_posish = i
         # for each play, loop through the return_list and assign it to an incremented (or double-decremented position within the correct list)
-        for j in range(0, possibilities-1):
+        for j in range(0, possibilities):
+
+            print(play, 'goes in the sublist at index ', j,' within the return_list. In the sublist, it will be inserted at index ', insert_posish)
             return_list[j].insert(insert_posish, play)
             if insert_posish == 0:
                 insert_posish += 1
             elif insert_posish == 1:
-                insert_posish += 2
+                insert_posish += 1
             else:
                 insert_posish -= 2
+
     return return_list
 
-# print(rock_paper_scissors(3))
+
+print(rock_paper_scissors(3))
