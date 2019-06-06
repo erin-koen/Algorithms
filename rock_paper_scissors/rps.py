@@ -56,4 +56,28 @@ def rock_paper_scissors(n):
     return return_list
 
 
-print(rock_paper_scissors(3))
+def rock_paper_scissors2(n):
+
+    # define the length of the output array
+    possibilities = 3**n
+
+    # instantiate an array with the correct number of sub lists
+    return_list = []
+
+    # declare rps
+    rps = ['rock', 'paper', 'scissors']
+
+    # loop through the return list and add one string from rps at a time
+    for i in range(0, possibilities):
+      potential = []
+      
+      for play in rps:
+          potential.append(play)
+      return_list.append(potential)
+    return return_list
+
+
+
+
+
+print(rock_paper_scissors2(3))
