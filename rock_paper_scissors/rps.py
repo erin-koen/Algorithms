@@ -6,7 +6,7 @@ Understand
 - takes in an integer (though could control for that using math.floor) which represents how many players are in the game 
 - outputs a list of lists of strings. len(outer_list) = total number of possible combinations Inner lists are combinations of 'rock' 'paper' and 'scissor' and len(inner_list) = n
 - three possible outcomes for each 1 of n. Number of total possible outcomes is equal to 3^n.
-- return should be [[''],[''],[']...]
+- return should be [['', '', ''],[''],[']...]
 - each play can be any of r, p, s. What you play on the next play not controlled by what you played on the last play. number of plays = n.
 
 
@@ -25,13 +25,31 @@ Analyze
 
 import sys
 
+
 def rock_paper_scissors(n):
-  possibilities = 3**n
-  return_list= possibilities*[[0]]
-  rps = ['rock', 'paper', 'scissors']
-  print([[return_list] + [rps]])
-  # def rps_recur(n):0
-    # base case: 
 
+    # define the length of the output array
+    possibilities = 3**n
 
-rock_paper_scissors(3)
+    # instantiate an array with the correct number of sub lists
+    return_list = possibilities*[['', '', '']]
+
+    # declare rps
+    rps = ['rock', 'paper', 'scissors']
+
+    # loop through RPS and assign one string at a time
+    for i in range(0, len(rps)-1):
+        play = rps[i]
+        insert_posish = i
+        # for each play, loop through the return_list and assign it to an incremented (or double-decremented position within the correct list)
+        for j in range(0, possibilities-1):
+            return_list[j].insert(insert_posish, play)
+            if insert_posish == 0:
+                insert_posish += 1
+            elif insert_posish == 1:
+                insert_posish += 2
+            else:
+                insert_posish -= 2
+    return return_list
+
+# print(rock_paper_scissors(3))
