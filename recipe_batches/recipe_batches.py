@@ -29,6 +29,7 @@ Analyze
 
 
 def recipe_batches(recipe, ingredients):
+  #only works if keys are identical, probably need a lower or uppercase thing here
   if recipe.keys() != ingredients.keys():
     return 0
   else:
@@ -37,16 +38,19 @@ def recipe_batches(recipe, ingredients):
     batches = 0
     #check the tuples - for each tuple in the recipe list, find the one in the ingredients list that matches it, divide the the numbers recipe/ingredient (i/j) and set it equal to batches if it's larger than batches currently is
     for i in recipe_list:
+      name = i[0]
+      amount = i[1]
       for j in ingredients_list:
-        if i[0] == j[0]:
-          if math.floor(i[1]/j[1]) > batches:
-            print('dividend', math.floor(i[1]/j[1]))
-            batches = math.floor(i[1]/j[1])
+        if j[0] == name:
+          ratio = math.floor(j[1]/amount)
+          print('recipe ', name, 'divided by ingredients ', j[0], 'equals ', ratio)
+          if ratio > batches:
+            batches = ratio
     
     return batches
 
 
-recipe_batches(
+print(recipe_batches(
   { 'milk': 100, 'butter': 50, 'flour': 5 },
   { 'milk': 138, 'butter': 48, 'flour': 51 }
-)
+))
